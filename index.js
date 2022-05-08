@@ -8,7 +8,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 //middle ware 
 app.use(cors());
 app.use(express.json());
-
+// Testing
 // waltonRefregerator
 // g61r3D9mThKnItVa
 
@@ -57,9 +57,10 @@ async function run(){
         const query = {_id: ObjectId(id)};
         const deleteData = await productCollection.deleteOne(query);
         res.send(deleteData);
-    })
-    }
+    });
 
+    }
+// 
     finally{
 
     }
