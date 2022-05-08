@@ -14,7 +14,7 @@ app.use(express.json());
 
 
 
-const uri = "mongodb+srv://waltonRefregerator:g61r3D9mThKnItVa@cluster0.clyrn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://DB_USER:DB_PASSWORD@cluster0.clyrn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 
