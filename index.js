@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const port = process.env.PORT || 5000;
 const cors = require('cors');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 
 //middle ware 
@@ -25,7 +25,7 @@ async function run(){
 
 
 
-    // getting data form database
+    // collecting  data form database
     app.get('/products' , async(req, res) =>{
         const query = {};
         const cursor = productCollection.find(query);
@@ -39,6 +39,24 @@ async function run(){
         const newProduct = req.body;
         const result = await productCollection.insertOne(newProduct);
         res.send(result);
+    })
+
+    //  single data finding for showing 
+     app.get('/product/:id', async(req, res) =>{
+        const id = req.params.id;
+        const query = {_id: ObjectId(id)};
+        const product = await productCollection.findOne(query);
+        res.send(product);
+    });
+
+
+
+    //Delete data 
+    app.delete('/products/:id', async(req, res) =>{
+        const id = req.params.id;
+        const query = {_id: ObjectId(id)};
+        const deleteData = await productCollection.deleteOne(query);
+        res.send(deleteData);
     })
     }
 
